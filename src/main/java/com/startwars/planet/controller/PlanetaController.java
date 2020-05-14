@@ -4,7 +4,7 @@ import com.startwars.planet.feign.StarwarsResponse;
 import com.startwars.planet.feign.SwapiClient;
 import com.startwars.planet.model.Planeta;
 import com.startwars.planet.repository.PlanetaRepository;
-import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,8 +22,7 @@ public class PlanetaController {
         this.starwarsapi = starwarsapi;
     }
 
-    @ResponseStatus(HttpStatus.OK)
-    @RequestMapping(value = "/filmes/{id}/", method = RequestMethod.GET)
+    @RequestMapping(value = "/filmes/{id}/", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public StarwarsResponse getFilmes(@PathVariable String id) {
         return starwarsapi.getFilms(id);
     }
